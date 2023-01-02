@@ -1,0 +1,25 @@
+{
+  "name": "analyse_besoin",
+  "version": "1.0.0",
+  "description": "Cours Analyse du besoin en groupe",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martybertrand/Analyse_Besoin.git"
+  },
+  "author": "Marty",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/martybertrand/Analyse_Besoin/issues"
+  },
+  "homepage": "https://github.com/martybertrand/Analyse_Besoin#readme",
+  "devDependencies": {
+    "@babel/core": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "babel-jest": "^29.3.1",
+    "jest": "^29.3.1"
+  }
+}
