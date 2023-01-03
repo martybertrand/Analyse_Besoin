@@ -1,255 +1,248 @@
 export default class Machine {
+	constructor() {
+		this.cafeServis = 0;
+		this.argentEncaisse = 0;
+		this.eauDisponible = true;
+		this.gobeletDisponible = true;
+		this.cafeEnStock = true;
 
-    constructor() {
-        this.cafeServis = 0
-        this.argentEncaisse = 0
-        this.eauDisponible = true
-        this.gobeletDisponible = true
-        this.cafeEnStock = true
+		this.nbDoseCafe = 1;
+		this.nbGobelet = 1;
+		this.nbDoseLait = 1;
+		this.nbDoseChoco = 1;
 
-        this.nbDoseCafe = 1
-        this.nbGobelet = 1
-        this.nbDoseLait = 1
-        this.nbDoseChoco = 1
+		this.bouttonSucreEtat = false;
+		this.doseSucre = 1;
 
-        this.bouttonSucreEtat = false
-        this.doseSucre = 1
+		this.bouton = 0;
+	}
 
-        this.bouton = 0
-        this.listBoisson = [
-            {
-                nom: 'café',
-                prix: 0.40
-            },
-            {
-                nom: 'allongé',
-                prix: 0.40
-            },
-            {
-                nom: 'latté',
-                prix: 0.45
-            },
-            {
-                nom: 'choco',
-                prix: 0.40
-            },
-            {
-                nom: 'choco-lait',
-                prix: 0.45
-            },
-            {
-                nom: 'capuccino',
-                prix: 0.50
-            }
-        ]
+	Insertion(montant) {
+		switch (this.bouton) {
+			case 1:
+				//allongé
+				if (
+					montant >= 0.4 &&
+					this.eauDisponible &&
+					this.gobeletDisponible &&
+					this.cafeEnStock &&
+					this.nbDoseCafe > 0 &&
+					this.nbGobelet > 0 &&
+					((this.doseSucre > 0 && this.bouttonSucreEtat) ||
+						!this.bouttonSucreEtat)
+				) {
+					this.cafeServis++;
+					this.argentEncaisse += montant;
+					this.nbGobelet--;
+					this.nbDoseCafe = this.nbDoseCafe - 2;
 
-    }
-    
-    Insertion(montant) {    
+					if (this.bouttonSucreEtat && this.doseSucre > 0) {
+						this.doseSucre--;
+						this.bouttonSucreEtat = false;
+					}
+				}
+			case 2:
+				//latté
+				if (
+					montant >= 0.45 &&
+					this.gobeletDisponible &&
+					this.nbDoseLait > 0 &&
+					this.nbGobelet > 0 &&
+					this.nbDoseCafe > 0 &&
+					((this.doseSucre > 0 && this.bouttonSucreEtat) ||
+						!this.bouttonSucreEtat)
+				) {
+					this.cafeServis++;
+					this.argentEncaisse += montant;
+					this.nbGobelet--;
+					this.nbDoseLait--;
+					this.nbDoseCafe--;
 
-        switch (this.bouton) {
-            case 1:
-                //allongé
-                if( montant >= 0.40 &&
-                    this.eauDisponible &&
-                    this.gobeletDisponible &&
-                    this.cafeEnStock &&
-                    this.nbDoseCafe > 0 &&
-                    this.nbGobelet > 0 && 
-                    ( (this.doseSucre > 0 && this.bouttonSucreEtat) || (!this.bouttonSucreEtat) )) {
-                        this.cafeServis ++
-                        this.argentEncaisse += montant
-                        this.nbGobelet --
-        
-                        if(this.bouttonSucreEtat && this.doseSucre > 0){
-                            this.doseSucre--
-                            this.bouttonSucreEtat = false
-                        }
-        
-                }
-            case 2:
-                //latté
-                if( montant >= 0.45 &&
-                    this.gobeletDisponible &&
-                    this.nbDoseLait > 0 &&
-                    this.nbGobelet > 0 && 
-                    ( (this.doseSucre > 0 && this.bouttonSucreEtat) || (!this.bouttonSucreEtat) )) {
-                        this.cafeServis ++
-                        this.argentEncaisse += montant
-                        this.nbGobelet --
-        
-                        if(this.bouttonSucreEtat && this.doseSucre > 0){
-                            this.doseSucre--
-                            this.bouttonSucreEtat = false
-                        }
-        
-                }
+					if (this.bouttonSucreEtat && this.doseSucre > 0) {
+						this.doseSucre--;
+						this.bouttonSucreEtat = false;
+					}
+				}
 
-            case 3:
-                //choco
-                if( montant >= 0.40 &&
-                    this.eauDisponible &&
-                    this.gobeletDisponible &&
-                    this.nbDoseChoco > 0 &&
-                    this.nbGobelet > 0 && 
-                    ( (this.doseSucre > 0 && this.bouttonSucreEtat) || (!this.bouttonSucreEtat) )) {
-                        this.cafeServis ++
-                        this.argentEncaisse += montant
-                        this.nbGobelet --
-        
-                        if(this.bouttonSucreEtat && this.doseSucre > 0){
-                            this.doseSucre--
-                            this.bouttonSucreEtat = false
-                        }
-        
-                }
+			case 3:
+				//choco
+				if (
+					montant >= 0.4 &&
+					this.eauDisponible &&
+					this.gobeletDisponible &&
+					this.nbDoseChoco > 0 &&
+					this.nbGobelet > 0 &&
+					((this.doseSucre > 0 && this.bouttonSucreEtat) ||
+						!this.bouttonSucreEtat)
+				) {
+					this.cafeServis++;
+					this.argentEncaisse += montant;
+					this.nbGobelet--;
+					this.nbDoseChoco--;
+					this.nbDoseCafe--;
 
-            case 4:
-                //choco-lait
-                if( montant >= 0.45 &&
-                    this.gobeletDisponible &&
-                    this.nbDoseChoco > 0 &&
-                    this.nbDoseLait > 0 &&
-                    this.nbGobelet > 0 && 
-                    ( (this.doseSucre > 0 && this.bouttonSucreEtat) || (!this.bouttonSucreEtat) )) {
-                        this.cafeServis ++
-                        this.argentEncaisse += montant
-                        this.nbGobelet --
-        
-                        if(this.bouttonSucreEtat && this.doseSucre > 0){
-                            this.doseSucre--
-                            this.bouttonSucreEtat = false
-                        }
-        
-                }
+					if (this.bouttonSucreEtat && this.doseSucre > 0) {
+						this.doseSucre--;
+						this.bouttonSucreEtat = false;
+					}
+				}
 
-            case 5:
-                //capuccino
-                if( montant >= 0.50 &&
-                    this.eauDisponible &&
-                    this.gobeletDisponible &&
-                    this.cafeEnStock &&
-                    this.nbDoseChoco > 0 &&
-                    this.nbDoseLait > 0 &&
-                    this.nbDoseCafe > 0 &&
-                    this.nbGobelet > 0 && 
-                    ( (this.doseSucre > 0 && this.bouttonSucreEtat) || (!this.bouttonSucreEtat) )) {
-                        this.cafeServis ++
-                        this.argentEncaisse += montant
-                        this.nbGobelet --
-        
-                        if(this.bouttonSucreEtat && this.doseSucre > 0){
-                            this.doseSucre--
-                            this.bouttonSucreEtat = false
-                        }
-        
-                }
+			case 4:
+				//choco-lait
+				if (
+					montant >= 0.45 &&
+					this.gobeletDisponible &&
+					this.nbDoseChoco > 0 &&
+					this.nbDoseLait > 0 &&
+					this.nbGobelet > 0 &&
+					((this.doseSucre > 0 && this.bouttonSucreEtat) ||
+						!this.bouttonSucreEtat)
+				) {
+					this.cafeServis++;
+					this.argentEncaisse += montant;
+					this.nbGobelet--;
+					this.nbDoseChoco--;
+					this.nbDoseLait--;
 
-            default:
-                //café
-                if( montant >= 0.4 &&
-                    this.eauDisponible &&
-                    this.gobeletDisponible &&
-                    this.cafeEnStock &&
-                    this.nbDoseCafe > 0 &&
-                    this.nbGobelet > 0 && 
-                    ( (this.doseSucre > 0 && this.bouttonSucreEtat) || (!this.bouttonSucreEtat) )) {
-                        this.cafeServis ++
-                        this.argentEncaisse += montant
-                        this.nbGobelet --
-        
-                        if(this.bouttonSucreEtat && this.doseSucre > 0){
-                            this.doseSucre--
-                            this.bouttonSucreEtat = false
-                        }
-                }
-        }
-        this.bouton = 0
-    }
+					if (this.bouttonSucreEtat && this.doseSucre > 0) {
+						this.doseSucre--;
+						this.bouttonSucreEtat = false;
+					}
+				}
 
-    GetNombreCafésServis() {
-        return this.cafeServis
-    }
+			case 5:
+				//capuccino
+				if (
+					montant >= 0.5 &&
+					this.eauDisponible &&
+					this.gobeletDisponible &&
+					this.cafeEnStock &&
+					this.nbDoseChoco > 0 &&
+					this.nbDoseLait > 0 &&
+					this.nbDoseCafe > 0 &&
+					this.nbGobelet > 0 &&
+					((this.doseSucre > 0 && this.bouttonSucreEtat) ||
+						!this.bouttonSucreEtat)
+				) {
+					this.cafeServis++;
+					this.argentEncaisse += montant;
+					this.nbGobelet--;
+					this.nbDoseCafe--;
+					this.nbDoseChoco--;
+					this.nbDoseLait--;
 
-    GetArgentEncaisse() {
-        return this.argentEncaisse
-    }
+					if (this.bouttonSucreEtat && this.doseSucre > 0) {
+						this.doseSucre--;
+						this.bouttonSucreEtat = false;
+					}
+				}
 
-    CouperEau() {
-        this.eauDisponible = false
-    }
+			case 0:
+				//café
+				if (
+					montant >= 0.4 &&
+					this.eauDisponible &&
+					this.gobeletDisponible &&
+					this.cafeEnStock &&
+					this.nbDoseCafe > 0 &&
+					this.nbGobelet > 0 &&
+					((this.doseSucre > 0 && this.bouttonSucreEtat) ||
+						!this.bouttonSucreEtat)
+				) {
+					this.cafeServis++;
+					this.argentEncaisse += montant;
+					this.nbGobelet--;
 
-    GobeletVide() {
-        this.gobeletDisponible = false
-    }
+					if (this.bouttonSucreEtat && this.doseSucre > 0) {
+						this.doseSucre--;
+						this.bouttonSucreEtat = false;
+					}
+				}
+		}
+		this.bouton = 0;
+	}
 
-    CafeEpuise() {
-        this.cafeEnStock = false
-    }
+	GetNombreCafésServis() {
+		return this.cafeServis;
+	}
 
+	GetArgentEncaisse() {
+		return this.argentEncaisse;
+	}
 
+	CouperEau() {
+		this.eauDisponible = false;
+	}
 
-    SansGobelets() {
-        return AyantXGobelet(0)
-    }
+	GobeletVide() {
+		this.gobeletDisponible = false;
+	}
 
-    SansCafe() {
-        return this.AyantDosesDeCafe(0)
-    }
+	CafeEpuise() {
+		this.cafeEnStock = false;
+	}
 
-    AyantXGobelet(x) {
-        this.nbGobelet = x        
-    }
+	SansGobelets() {
+		return AyantXGobelet(0);
+	}
 
-    AyantDosesDeCafe(y) {
-        this.nbDoseCafe = y
-    }
+	SansCafe() {
+		return this.AyantDosesDeCafe(0);
+	}
 
-    AyantZSucreEnStock(z) {
-        this.doseSucre = z
-    }
+	AyantXGobelet(x) {
+		this.nbGobelet = x;
+	}
 
-    AyantXLait(x) {
-        this.nbDoseLait = x
-    }
+	AyantDosesDeCafe(y) {
+		this.nbDoseCafe = y;
+	}
 
-    AyantXChoco(x) {
-        this.nbDoseChoco = x
-    }
+	AyantZSucreEnStock(z) {
+		this.doseSucre = z;
+	}
 
-    GetDoseSucre() {
-        return this.doseSucre
-    }
+	AyantXLait(x) {
+		this.nbDoseLait = x;
+	}
 
-    GetDoseLait() {
-        return this.nbDoseLait
-    }
+	AyantXChoco(x) {
+		this.nbDoseChoco = x;
+	}
 
-    GetDoseChoco() {
-        return this.nbDoseChoco
-    }
+	GetDoseSucre() {
+		return this.doseSucre;
+	}
 
-    AppuiBouttonSucre() {
-        this.bouttonSucreEtat = true
-    }
+	GetDoseLait() {
+		return this.nbDoseLait;
+	}
 
-    AppuiBoutonAllonge() {
-        this.bouton = 1;
-    }
+	GetDoseChoco() {
+		return this.nbDoseChoco;
+	}
 
-    AppuiBoutonLatte() {
-        this.bouton = 2;
-    }
+	AppuiBouttonSucre() {
+		this.bouttonSucreEtat = true;
+	}
 
-    AppuiBoutonChoco() {
-        this.bouton = 3;
-    }
+	AppuiBoutonAllonge() {
+		this.bouton = 1;
+	}
 
-    AppuiBoutonChocoLait() {
-        this.bouton = 4;
-    }
+	AppuiBoutonLatte() {
+		this.bouton = 2;
+	}
 
-    AppuiBoutonCapuccino() {
-        this.bouton = 5;
-    }
+	AppuiBoutonChoco() {
+		this.bouton = 3;
+	}
+
+	AppuiBoutonChocoLait() {
+		this.bouton = 4;
+	}
+
+	AppuiBoutonCapuccino() {
+		this.bouton = 5;
+	}
 }
