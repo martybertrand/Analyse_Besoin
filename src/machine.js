@@ -12,16 +12,38 @@ export default class Machine {
 
         this.bouttonSucreEtat = false
         this.doseSucre = 1
+        this.boisson = 'café'
+        this.bouton = 1
+        this.listBoisson = [
+            {
+                nom: 'café',
+                prix: 0.40
+            },
+            {
+                nom: 'lait',
+                prix: 0.50
+            },
+            {
+                nom: 'choco',
+                prix: 0.60
+            },
+            {
+                nom: 'choco-lait',
+                prix: 0.60
+            }
+        ]
+
     }
     
-    Insertion(montant) {
+    Insertion(montant) {    
 
         if( montant >= 0.4 &&
             this.eauDisponible &&
             this.gobeletDisponible &&
             this.cafeEnStock &&
             this.nbDoseCafe > 0 &&
-            this.nbGobelet > 0 && ( (this.doseSucre > 0 && this.bouttonSucreEtat) || (!this.bouttonSucreEtat) )) {
+            this.nbGobelet > 0 && 
+            ( (this.doseSucre > 0 && this.bouttonSucreEtat) || (!this.bouttonSucreEtat) )) {
                 this.cafeServis ++
                 this.argentEncaisse += montant
                 this.nbGobelet --
@@ -30,6 +52,7 @@ export default class Machine {
                     this.doseSucre--
                     this.bouttonSucreEtat = false
                 }
+
         } 
 
     }
