@@ -164,6 +164,7 @@ export default class Machine {
                         }
                 }
         }
+        this.bouton = 0
     }
 
     GetNombreCafésServis() {
@@ -230,5 +231,25 @@ export default class Machine {
 
     AppuiBouttonSucre() {
         this.bouttonSucreEtat = true
+    }
+
+    AppuiBoutonAllonge() {
+        this.bouton = 1;
+    }
+
+    AppuiBoutonLatte() {
+        this.bouton = 2;
+    }
+
+    AppuiBoutonChoco() {
+        this.bouton = 3;
+    }
+
+    AppuiBoutonChocoLait() {
+        this.bouton = 4;
+    }
+
+    AppuiBoutonCapuccino() {
+        this.bouton = 5;
     }
 }
