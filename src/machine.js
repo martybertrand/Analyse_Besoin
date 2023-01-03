@@ -9,19 +9,29 @@ export default class Machine {
 
         this.nbDoseCafe = 1
         this.nbGobelet = 1
+
+        this.bouttonSucreEtat = false
+        this.doseSucre = 1
     }
     
     Insertion(montant) {
-        if(montant >= 0.4 &&
+
+        if( montant >= 0.4 &&
             this.eauDisponible &&
             this.gobeletDisponible &&
             this.cafeEnStock &&
             this.nbDoseCafe > 0 &&
-            this.nbGobelet > 0) {
+            this.nbGobelet > 0 && ( (this.doseSucre > 0 && this.bouttonSucreEtat) || (!this.bouttonSucreEtat) )) {
                 this.cafeServis ++
                 this.argentEncaisse += montant
                 this.nbGobelet --
-        }
+
+                if(this.bouttonSucreEtat && this.doseSucre > 0){
+                    this.doseSucre--
+                    this.bouttonSucreEtat = false
+                }
+        } 
+
     }
 
     GetNombreCafésServis() {
@@ -60,5 +70,17 @@ export default class Machine {
 
     AyantDosesDeCafe(y) {
         this.nbDoseCafe = y
+    }
+
+    AyantZSucreEnStock(z) {
+        this.doseSucre = z
+    }
+
+    GetDoseSucre() {
+        return this.doseSucre
+    }
+
+    AppuiBouttonSucre() {
+        this.bouttonSucreEtat = true
     }
 }
