@@ -1,6 +1,6 @@
 import Machine from "../src/machine";
 
-describe("choco", () => {
+describe("Latte", () => {
 	test("Machine bouton latté, en stock, bien payé", () => {
 		//ETANT DONNE une machine à café où on appuie sur le bouton latté
 		const machine = new Machine();
@@ -33,6 +33,7 @@ describe("choco", () => {
 		let nbCafeInit = machine.GetNombreCafésServis();
 		let nbLaitInit = machine.GetDoseLait();
 		let argentInit = machine.GetArgentEncaisse();
+		machine.AppuiBoutonLatte();
 
 		//QUAND on met 45cts
 		machine.Insertion(0.45);
@@ -78,7 +79,6 @@ describe("choco", () => {
 	test("Machine bouton lait, pas assez de sous", () => {
 		//ETANT DONNE une machine à café où on appuie sur le bouton latté
 		const machine = new Machine();
-		machine.AyantXLait(0);
 		let nbCafeInit = machine.GetNombreCafésServis();
 		let nbLaitInit = machine.GetDoseLait();
 		let argentInit = machine.GetArgentEncaisse();
@@ -93,7 +93,7 @@ describe("choco", () => {
 
 		//ET une dose de lait ne coule pas
 		const nbLaitFinal = machine.GetDoseLait();
-		expect(nbLaitInit).toBe(nbLaitInit);
+		expect(nbLaitFinal).toBe(nbLaitInit);
 
 		//ET l'argent n'est pas encaissé
 		const argentFinal = machine.GetArgentEncaisse();

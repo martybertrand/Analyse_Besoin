@@ -34,7 +34,7 @@ export default class Machine {
 					this.cafeServis++;
 					this.argentEncaisse += montant;
 					this.nbGobelet--;
-					this.nbDoseCafe = this.nbDoseCafe - 2;
+					this.nbDoseCafe = this.nbDoseCafe --;
 
 					if (this.bouttonSucreEtat && this.doseSucre > 0) {
 						this.doseSucre--;
@@ -45,7 +45,6 @@ export default class Machine {
 				//latté
 				if (
 					montant >= 0.45 &&
-					this.gobeletDisponible &&
 					this.nbDoseLait > 0 &&
 					this.nbGobelet > 0 &&
 					this.nbDoseCafe > 0 &&
