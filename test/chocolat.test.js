@@ -2,11 +2,13 @@ import Machine from "../src/machine";
 
 describe("Choco", () => {
 	test("Machine bouton choco, en stock, bien payé", () => {
-		//ETANT DONNE une machine à café où on appuie sur le bouton choco
+		//ETANT DONNE une machine à café
 		const machine = new Machine();
 
         let nbChocoInit = machine.GetDoseChoco()
 		let argentInit = machine.GetArgentEncaisse();
+
+		//ET on appuie sur le bouton choco
 		machine.AppuiBoutonChoco();
 
 		//QUAND on met 40cts
@@ -21,13 +23,17 @@ describe("Choco", () => {
 		expect(argentFinal).toBe(argentInit + 0.40);
 	});
 
-	test("Machine bouton choco, bien payé", () => {
-		//ETANT DONNE une machine à café où on appuie sur le bouton choco qui n'a plus de choco
+	test("Machine bouton choco, sans choco, bien payé", () => {
+		//ETANT DONNE une machine à café
 		const machine = new Machine();
+
+		//Sans choco
 		machine.AyantXChoco(0);
 
         let nbChocoInit = machine.GetDoseChoco();
 		let argentInit = machine.GetArgentEncaisse();
+
+		//ET on appuie sur le bouton choco 
 		machine.AppuiBoutonChoco();
 
 		//QUAND on met 40cts
@@ -43,10 +49,12 @@ describe("Choco", () => {
 	});
 
 	test("Machine bouton choco, pas assez de sous", () => {
-		//ETANT DONNE une machine à café où on appuie sur le bouton choco
+		//ETANT DONNE une machine à café
 		const machine = new Machine();
 		let nbChocoInit = machine.GetDoseChoco();
 		let argentInit = machine.GetArgentEncaisse();
+
+		//ET on appuie sur le bouton choco
 		machine.AppuiBoutonChoco();
 
 		//QUAND on met 30cts

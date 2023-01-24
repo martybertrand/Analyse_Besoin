@@ -4,7 +4,6 @@ describe('Dose de sucre', () => {
     test('ETANT DONNE une machine à cafe ET un appui sur le bouton sucre QUAND on met 40 cts ALORS un café coule ET une dose de sucre est consommée', () => {
         //ETANT DONNE une machine à cafe
         const machine = new Machine()
-        machine.AyantXGobelet(1)
 
         let nbCafeInit = machine.GetNombreCafésServis()
         let doseSucreInit = machine.GetDoseSucre()
@@ -28,8 +27,10 @@ describe('Dose de sucre', () => {
     });
 
     test('ETANT DONNE une machine à cafe n\'ayant plus de sucre ET un appui sur le bouton sucre QUAND on met 40 cts ALORS aucun café ne coule ET aucune dose de sucre n\'est consommée ET l\'argent est rendu', () => {
-        //ETANT DONNE une machine à cafe n'ayant plus du sucre
+        //ETANT DONNE une machine à cafe
         const machine = new Machine()
+
+        //N'ayant plus de sucre
         machine.AyantZSucreEnStock(0)
 
         let nbCafeInit = machine.GetNombreCafésServis()

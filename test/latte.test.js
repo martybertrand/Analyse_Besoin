@@ -2,12 +2,14 @@ import Machine from "../src/machine";
 
 describe("Latte", () => {
 	test("Machine bouton latté, en stock, bien payé", () => {
-		//ETANT DONNE une machine à café où on appuie sur le bouton latté
+		//ETANT DONNE une machine à café
 		const machine = new Machine();
 
 		let nbCafeInit = machine.GetNombreCafésServis();
 		let nbLaitInit = machine.GetDoseLait();
 		let argentInit = machine.GetArgentEncaisse();
+
+		//ET on appuie sur le bouton latté
 		machine.AppuiBoutonLatte();
 
 		//QUAND on met 45cts
@@ -27,12 +29,17 @@ describe("Latte", () => {
 	});
 
 	test("Machine bouton lait, plus de café, bien payé", () => {
-		//ETANT DONNE une machine à café où on appuie sur le bouton latté qui n'a plus de café
+		//ETANT DONNE une machine à café 
 		const machine = new Machine();
+
+		//Sans café
 		machine.SansCafe();
+
 		let nbCafeInit = machine.GetNombreCafésServis();
 		let nbLaitInit = machine.GetDoseLait();
 		let argentInit = machine.GetArgentEncaisse();
+
+		//ET on appuie sur le bouton latté
 		machine.AppuiBoutonLatte();
 
 		//QUAND on met 45cts
@@ -52,12 +59,16 @@ describe("Latte", () => {
 	});
 
 	test("Machine bouton lait, plus de lait, bien payé", () => {
-		//ETANT DONNE une machine à café où on appuie sur le bouton latté qui n'ai plus de lait
+		//ETANT DONNE une machine à café
 		const machine = new Machine();
+
+		//Sans lait
 		machine.AyantXLait(0);
 		let nbCafeInit = machine.GetNombreCafésServis();
 		let nbLaitInit = machine.GetDoseLait();
 		let argentInit = machine.GetArgentEncaisse();
+
+		//ET on appuie sur le bouton latté
 		machine.AppuiBoutonLatte();
 
 		//QUAND on met 45cts
@@ -77,11 +88,13 @@ describe("Latte", () => {
 	});
 
 	test("Machine bouton lait, pas assez de sous", () => {
-		//ETANT DONNE une machine à café où on appuie sur le bouton latté
+		//ETANT DONNE une machine à café
 		const machine = new Machine();
 		let nbCafeInit = machine.GetNombreCafésServis();
 		let nbLaitInit = machine.GetDoseLait();
 		let argentInit = machine.GetArgentEncaisse();
+
+		//ET on appuie sur le bouton latté
 		machine.AppuiBoutonLatte();
 
 		//QUAND on met 40cts

@@ -2,13 +2,15 @@ import Machine from "../src/machine";
 
 describe("Cappuccino", () => {
 	test("Machine bouton cappuccino, en stock, bien payé", () => {
-		//ETANT DONNE une machine à café où on appuie sur le bouton cappuccino
+		//ETANT DONNE une machine à café 
 		const machine = new Machine();
 
 		let nbCafeInit = machine.GetNombreCafésServis();
 		let nbLaitInit = machine.GetDoseLait();
 		let nbChocoInit = machine.GetDoseChoco();
 		let argentInit = machine.GetArgentEncaisse();
+
+        //ET on appuie sur le bouton cappuccino
 		machine.AppuiBoutonCapuccino();
 
 		//QUAND on met 50cts
@@ -32,14 +34,18 @@ describe("Cappuccino", () => {
 	});
 
 	test("Machine bouton cappuccino, plus de café, bien payé", () => {
-		//ETANT DONNE une machine à café où on appuie sur le bouton cappuccino qui n'a plus de café
+		//ETANT DONNE une machine à café
 		const machine = new Machine();
+
+        //Sans café
 		machine.SansCafe();
 
 		let nbCafeInit = machine.GetNombreCafésServis();
 		let nbChocoInit = machine.GetDoseChoco();
 		let nbLaitInit = machine.GetDoseLait();
 		let argentInit = machine.GetArgentEncaisse();
+
+        //ET on appuie sur le bouton cappuccino
 		machine.AppuiBoutonCapuccino();
 
 		//QUAND on met 50cts
@@ -63,14 +69,18 @@ describe("Cappuccino", () => {
 	});
 
 	test("Machine bouton cappuccino, plus de lait, bien payé", () => {
-		//ETANT DONNE une machine à café où on appuie sur le bouton cappuccino qui n'ai plus de lait
+		//ETANT DONNE une machine à café
 		const machine = new Machine();
+
+        //Qui n'a plus de lait
 		machine.AyantXLait(0);
 
 		let nbCafeInit = machine.GetNombreCafésServis();
 		let nbChocoInit = machine.GetDoseChoco();
 		let nbLaitInit = machine.GetDoseLait();
 		let argentInit = machine.GetArgentEncaisse();
+
+        //ET on appuie sur le bouton cappuccino
 		machine.AppuiBoutonCapuccino();
 
 		//QUAND on met 50cts
@@ -94,14 +104,18 @@ describe("Cappuccino", () => {
 	});
 
     test("Machine bouton cappuccino, plus de choco, bien payé", () => {
-		//ETANT DONNE une machine à café où on appuie sur le bouton cappuccino qui n'ai plus de choco
+		//ETANT DONNE une machine à café
 		const machine = new Machine();
+
+        //Sans choco
 		machine.AyantXChoco(0);
 
 		let nbCafeInit = machine.GetNombreCafésServis();
 		let nbChocoInit = machine.GetDoseChoco();
 		let nbLaitInit = machine.GetDoseLait();
 		let argentInit = machine.GetArgentEncaisse();
+
+        //ET on appuie sur le bouton cappuccino
 		machine.AppuiBoutonCapuccino();
 
 		//QUAND on met 50cts
@@ -125,13 +139,15 @@ describe("Cappuccino", () => {
 	});
 
 	test("Machine bouton cappuccino, pas assez de sous", () => {
-		//ETANT DONNE une machine à café où on appuie sur le bouton cappuccino
+		//ETANT DONNE une machine à café
 		const machine = new Machine();
 
 		let nbCafeInit = machine.GetNombreCafésServis();
 		let nbLaitInit = machine.GetDoseLait();
 		let nbChocoInit = machine.GetDoseChoco();
 		let argentInit = machine.GetArgentEncaisse();
+
+        //ET on appuie sur le bouton cappuccino
 		machine.AppuiBoutonCapuccino();
 
 		//QUAND on met 40cts

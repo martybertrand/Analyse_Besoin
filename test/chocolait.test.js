@@ -2,7 +2,7 @@ import Machine from "../src/machine";
 
 describe("ChocoLait", () => {
 	test("Machine bouton chocolait, en stock, bien payé", () => {
-		//ETANT DONNE une machine à café où on appuie sur le bouton chocolait
+		//ETANT DONNE une machine à café
 		const machine = new Machine();
 
 		let nbCafeInit = machine.GetNombreCafésServis();
@@ -10,6 +10,7 @@ describe("ChocoLait", () => {
 		let nbChocolatInit = machine.GetDoseChoco();
 		let argentInit = machine.GetArgentEncaisse();
 
+		//ET on appuie sur le bouton chocolait
 		machine.AppuiBoutonChocoLait();
 
 		//QUAND on met 45cts
@@ -32,14 +33,18 @@ describe("ChocoLait", () => {
 		expect(argentFinal).toBe(argentInit + 0.45);
 	});
 
-	test("Machine bouton chocolait, plus de café, bien payé", () => {
-		//ETANT DONNE une machine à café où on appuie sur le bouton chocolait qui n'a plus de chocolat
+	test("Machine bouton chocolait, plus de choco, bien payé", () => {
+		//ETANT DONNE une machine à café
 		const machine = new Machine();
+
+		//Sans choco
 		machine.AyantXChoco(0);
 		let nbCafeInit = machine.GetNombreCafésServis();
 		let nbLaitInit = machine.GetDoseLait();
 		let nbChocolatInit = machine.GetDoseChoco();
 		let argentInit = machine.GetArgentEncaisse();
+
+		//ET on appuie sur le bouton chocolait
 		machine.AppuiBoutonChocoLait();
 
 		//QUAND on met 45cts
@@ -63,13 +68,17 @@ describe("ChocoLait", () => {
 	});
 
 	test("Machine bouton chocolait, plus de lait, bien payé", () => {
-		//ETANT DONNE une machine à café où on appuie sur le bouton chocolait qui n'ai plus de lait
+		//ETANT DONNE une machine à café
 		const machine = new Machine();
+
+		//Sans lait
 		machine.AyantXLait(0);
 		let nbCafeInit = machine.GetNombreCafésServis();
 		let nbLaitInit = machine.GetDoseLait();
 		let nbChocolatInit = machine.GetDoseChoco();
 		let argentInit = machine.GetArgentEncaisse();
+
+		//ET on appuie sur le bouton chocolait
 		machine.AppuiBoutonChocoLait();
 
 		//QUAND on met 45cts
@@ -93,12 +102,14 @@ describe("ChocoLait", () => {
 	});
 
 	test("Machine bouton chocolait, pas assez de sous", () => {
-		//ETANT DONNE une machine à café où on appuie sur le bouton chocolait
+		//ETANT DONNE une machine à café
 		const machine = new Machine();
 		let nbCafeInit = machine.GetNombreCafésServis();
 		let nbLaitInit = machine.GetDoseLait();
 		let nbChocolatInit = machine.GetDoseChoco();
 		let argentInit = machine.GetArgentEncaisse();
+
+		//ET on appuie sur le bouton chocolait
 		machine.AppuiBoutonChocoLait();
 
 		//QUAND on met 40cts

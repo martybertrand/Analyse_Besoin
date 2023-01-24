@@ -2,8 +2,10 @@ import Machine from "../src/machine";
 
 describe('Pénuries', () => {
     test('ETANT DONNE une machine n\'ayant plus d\'eau QUAND on met 40 cts ALORS aucun café ne coule ET l\'argent est rendu', () => {
-        //ETANT DONNE une machine n'ayant plus d'eau
+        //ETANT DONNE une machine
         const machine = new Machine()
+
+        //N'ayant pus d'eau
         machine.CouperEau()
 
         let nbCafeInit = machine.GetNombreCafésServis()
@@ -23,8 +25,10 @@ describe('Pénuries', () => {
     });
 
     test('ETANT DONNE une machine n\'ayant pas de gobelet QUAND on met 40 cts ALORS aucun café ne coule ET l\'argent est rendu', () => {
-        //ETANT DONNE une machine n'ayant pas de gobelet
+        //ETANT DONNE une machine
         const machine = new Machine()
+
+        //N'ayant pas de gobelet
         machine.GobeletVide()
 
         let nbCafeInit = machine.GetNombreCafésServis()
@@ -44,8 +48,10 @@ describe('Pénuries', () => {
     });
 
     test('ETANT DONNE une machine n\'ayant plus de café QUAND on met 40 cts ALORS aucun café ne coule ET l\'argent est rendu', () => {
-        //ETANT DONNE une machine n'ayant plus de café
+        //ETANT DONNE une machine
         const machine = new Machine()
+
+        //N'ayant plus de café
         machine.CafeEpuise()
 
         let nbCafeInit = machine.GetNombreCafésServis()
