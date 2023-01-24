@@ -29,7 +29,7 @@ describe("Latte", () => {
 	test("Machine bouton lait, plus de café, bien payé", () => {
 		//ETANT DONNE une machine à café où on appuie sur le bouton latté qui n'a plus de café
 		const machine = new Machine();
-		machine.AyantDosesDeCafe(0);
+		machine.SansCafe();
 		let nbCafeInit = machine.GetNombreCafésServis();
 		let nbLaitInit = machine.GetDoseLait();
 		let argentInit = machine.GetArgentEncaisse();
