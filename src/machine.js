@@ -219,7 +219,7 @@ export default class Machine {
 		return this.doseSucre;
 	}
 
-	GetDoseSucre() {
+	GetDoseCafe() {
 		return this.nbDoseCafe;
 	}
 
