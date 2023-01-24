@@ -34,13 +34,14 @@ export default class Machine {
 					this.cafeServis++;
 					this.argentEncaisse += montant;
 					this.nbGobelet--;
-					this.nbDoseCafe = this.nbDoseCafe --;
+					this.nbDoseCafe = this.nbDoseCafe--;
 
 					if (this.bouttonSucreEtat && this.doseSucre > 0) {
 						this.doseSucre--;
 						this.bouttonSucreEtat = false;
 					}
 				}
+				break;
 			case 2:
 				//latté
 				if (
@@ -62,6 +63,7 @@ export default class Machine {
 						this.bouttonSucreEtat = false;
 					}
 				}
+				break;
 
 			case 3:
 				//choco
@@ -85,6 +87,7 @@ export default class Machine {
 						this.bouttonSucreEtat = false;
 					}
 				}
+				break;
 
 			case 4:
 				//choco-lait
@@ -108,6 +111,7 @@ export default class Machine {
 						this.bouttonSucreEtat = false;
 					}
 				}
+				break;
 
 			case 5:
 				//capuccino
@@ -135,6 +139,7 @@ export default class Machine {
 						this.bouttonSucreEtat = false;
 					}
 				}
+				break;
 
 			case 0:
 				//café
@@ -157,6 +162,7 @@ export default class Machine {
 						this.bouttonSucreEtat = false;
 					}
 				}
+				break;
 		}
 		this.bouton = 0;
 	}
